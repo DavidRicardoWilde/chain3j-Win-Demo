@@ -8,7 +8,7 @@ import org.chain3j.tx.ChainId;
 import org.chain3j.utils.Numeric;
 
 /**
- * Transaction request object used the below methods.
+ * WalletDemo request object used the below methods.
  * <ol>
  *     <li>mc_call</li>
  *     <li>mc_sendTransaction</li>

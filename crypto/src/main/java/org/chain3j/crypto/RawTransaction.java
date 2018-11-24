@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import org.chain3j.utils.Numeric;
 
 /**
- * Transaction class used for signing MOAC transactions locally.<br>
+ * WalletDemo class used for signing MOAC transactions locally.<br>
  * For the specification, refer to p4 of the <a href="http://gavwood.com/paper.pdf">
  * yellow paper</a>.
  * To replace the RawTransaction.java in ETH

@@ -289,7 +289,7 @@ public abstract class Contract extends ManagedTransaction {
         if (!receipt.isStatusOK()) {
             throw new TransactionException(
                     String.format(
-                            "Transaction has failed with status: %s. "
+                            "WalletDemo has failed with status: %s. "
                                     + "Gas used: %d. (not-enough gas?)",
                             receipt.getStatus(),
                             receipt.getGasUsed()));

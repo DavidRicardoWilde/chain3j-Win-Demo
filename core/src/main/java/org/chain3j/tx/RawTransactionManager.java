@@ -118,7 +118,7 @@ public class RawTransactionManager extends TransactionManager {
             signedMessage = TransactionEncoder.signMessage(rawTransaction, chainId, credentials);
         } else {
             // signedMessage = TransactionEncoder.signMessage(rawTransaction, chainId, credentials);
-            throw new IOException("Invalid chain id for signing the Transaction!");
+            throw new IOException("Invalid chain id for signing the WalletDemo!");
         }
 
         String hexValue = Numeric.toHexString(signedMessage);

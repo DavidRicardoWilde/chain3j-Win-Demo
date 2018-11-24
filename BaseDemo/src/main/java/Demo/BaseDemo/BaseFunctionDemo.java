@@ -5,6 +5,7 @@ import org.chain3j.protocol.Chain3j;
 import org.chain3j.protocol.admin.Admin;
 import org.chain3j.protocol.admin.methods.response.NewAccountIdentifier;
 import org.chain3j.protocol.admin.methods.response.PersonalListAccounts;
+import org.chain3j.protocol.admin.methods.response.PersonalUnlockAccount;
 import org.chain3j.protocol.core.DefaultBlockParameter;
 import org.chain3j.protocol.core.methods.response.Chain3ClientVersion;
 import org.chain3j.protocol.core.methods.response.McGetBalance;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 
 public class BaseFunctionDemo {
@@ -56,7 +58,24 @@ public class BaseFunctionDemo {
 //
 //        }
 
-        //
+        //Unlock an account
+//        try {
+//            unlockAccount(admin);
+//        }catch (IOException e){
+//
+//        }
+
+
+
+    }
+
+    private void unlockAccount(Admin admin) throws  IOException{
+        String address ="";
+        String password="test123";
+        BigInteger unlockDuration = BigInteger.valueOf(60L);
+        PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount(address,password,unlockDuration).send();
+        Boolean isUnclock = personalUnlockAccount.accountUnlocked();
+        System.out.println("The account "+address+"is unclocked now");
     }
 
     private void getBlanceOf(Chain3j chain3j) throws IOException{
