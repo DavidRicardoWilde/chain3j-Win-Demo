@@ -30,13 +30,13 @@ public class BaseFunctionDemo {
 
     public void run(){
         //Check the Client Version
-        //Chain3j chain3j = Chain3j.build(new HttpService("http://127.0.0.1:8545"));
-        Admin admin = Admin.build(new HttpService("http://127.0.0.1:8545"));
-        //        try{
-//            chechClientVersion(chain3j);
-//        }catch (IOException e){
-//            log.info("IOException",e.toString());
-//        }
+        Chain3j chain3j = Chain3j.build(new HttpService("http://127.0.0.1:8545")); // using loaclhost for development
+        Admin admin = Admin.build(new HttpService("http://127.0.0.1:8545")); //
+        try{
+            chechClientVersion(chain3j);
+        }catch (IOException e){
+            log.info("IOException",e.toString());
+        }
 
         //Get account list
         try{
@@ -46,25 +46,26 @@ public class BaseFunctionDemo {
         }
 
         //Create an account
-//        try{
-//            createAccount(admin);
-//        }catch (IOException e){
-//
-//        }
+        try{
+            createAccount(admin);
+        }catch (IOException e){
+
+        }
 
         //Get balance of
-//        try {
-//            getBlanceOf(chain3j);
-//        }catch (IOException e){
-//
-//        }
+        try {
+            getBlanceOf(chain3j);
+        }catch (IOException e){
+
+        }
 
         //Unlock an account
-//        try {
-//            unlockAccount(admin);
-//        }catch (IOException e){
-//
-//        }
+        try {
+            unlockAccount(admin);
+        }catch (IOException e){
+
+        }
+
 
 //        try{
 //            getBlanceByHash(chain3j);
@@ -74,24 +75,24 @@ public class BaseFunctionDemo {
 
     }
 
-    private void getBlanceByHash(Chain3j chain3j)throws IOException{
-        String hashNum = "5d3baec2ebc268c7b6dab07039d04278ffac5697988a8f7999211c293494e015";
-        McBlock mcBlock = chain3j.mcGetBlockByHash(hashNum,true).send();
-        if (mcBlock == null){
-            System.out.println("the mcBlock is null");
-        }else{
-            System.out.println("the block is "+mcBlock);
-        }
-
-        McBlock.Block block = mcBlock.getBlock();
-
-        //BigInteger timestamp =mcBlock.getBlock().getTimestamp();
-        System.out.println("Time is "+block);
-    }
+//    private void getBlanceByHash(Chain3j chain3j)throws IOException{
+//        String hashNum = "5d3baec2ebc268c7b6dab07039d04278ffac5697988a8f7999211c293494e015";
+//        McBlock mcBlock = chain3j.mcGetBlockByHash(hashNum,true).send();
+//        if (mcBlock == null){
+//            System.out.println("the mcBlock is null");
+//        }else{
+//            System.out.println("the block is "+mcBlock);
+//        }
+//
+//        McBlock.Block block = mcBlock.getBlock();
+//
+//        //BigInteger timestamp =mcBlock.getBlock().getTimestamp();
+//        System.out.println("Time is "+block);
+//    }
 
     private void unlockAccount(Admin admin) throws  IOException{
-        String address ="";
-        String password="test123";
+        String address =""; //Your wallet address
+        String password="";
         BigInteger unlockDuration = BigInteger.valueOf(60L);
         PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount(address,password,unlockDuration).send();
         Boolean isUnclock = personalUnlockAccount.accountUnlocked();
@@ -100,7 +101,7 @@ public class BaseFunctionDemo {
     }
 
     private void getBlanceOf(Chain3j chain3j) throws IOException{
-        String adress = "0x533ef68e791d49154d0979c8851fde5455c345cf";
+        String adress = ""; //
         McGetBalance balacne = chain3j.mcGetBalance(adress, DefaultBlockParameter.valueOf("latest")).send();
         String balanceVule = Convert.fromSha(balacne.getBalance().toString(),Convert.Unit.MC).toPlainString().concat("mc");
         System.out.println("balanceVule: "+balanceVule);
@@ -128,7 +129,7 @@ public class BaseFunctionDemo {
 //        String checkkey = null;
 //        System.out.print("Plz enter you password");
 
-        String password = "test123";
+        String password = "";
         NewAccountIdentifier newAccount = admin.personalNewAccount(password).send();
         String newAccoundtAdress = newAccount.getAccountId();
         System.out.println("New Account adress is:"+newAccoundtAdress);
