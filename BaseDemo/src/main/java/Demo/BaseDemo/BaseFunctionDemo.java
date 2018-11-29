@@ -8,6 +8,7 @@ import org.chain3j.protocol.admin.methods.response.PersonalListAccounts;
 import org.chain3j.protocol.admin.methods.response.PersonalUnlockAccount;
 import org.chain3j.protocol.core.DefaultBlockParameter;
 import org.chain3j.protocol.core.methods.response.Chain3ClientVersion;
+import org.chain3j.protocol.core.methods.response.McBlock;
 import org.chain3j.protocol.core.methods.response.McGetBalance;
 import org.chain3j.protocol.http.HttpService;
 import org.chain3j.utils.Convert;
@@ -29,7 +30,7 @@ public class BaseFunctionDemo {
 
     public void run(){
         //Check the Client Version
-        Chain3j chain3j = Chain3j.build(new HttpService("http://127.0.0.1:8545"));
+        //Chain3j chain3j = Chain3j.build(new HttpService("http://127.0.0.1:8545"));
         Admin admin = Admin.build(new HttpService("http://127.0.0.1:8545"));
         //        try{
 //            chechClientVersion(chain3j);
@@ -38,11 +39,11 @@ public class BaseFunctionDemo {
 //        }
 
         //Get account list
-//        try{
-//            getAccountList(admin);
-//        }catch (IOException e){
-//
-//        }
+        try{
+            getAccountList(admin);
+        }catch (IOException e){
+
+        }
 
         //Create an account
 //        try{
@@ -65,8 +66,27 @@ public class BaseFunctionDemo {
 //
 //        }
 
+//        try{
+//            getBlanceByHash(chain3j);
+//        }catch (Exception e){
+//
+//        }
 
+    }
 
+    private void getBlanceByHash(Chain3j chain3j)throws IOException{
+        String hashNum = "5d3baec2ebc268c7b6dab07039d04278ffac5697988a8f7999211c293494e015";
+        McBlock mcBlock = chain3j.mcGetBlockByHash(hashNum,true).send();
+        if (mcBlock == null){
+            System.out.println("the mcBlock is null");
+        }else{
+            System.out.println("the block is "+mcBlock);
+        }
+
+        McBlock.Block block = mcBlock.getBlock();
+
+        //BigInteger timestamp =mcBlock.getBlock().getTimestamp();
+        System.out.println("Time is "+block);
     }
 
     private void unlockAccount(Admin admin) throws  IOException{
@@ -75,6 +95,7 @@ public class BaseFunctionDemo {
         BigInteger unlockDuration = BigInteger.valueOf(60L);
         PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount(address,password,unlockDuration).send();
         Boolean isUnclock = personalUnlockAccount.accountUnlocked();
+        //if()
         System.out.println("The account "+address+"is unclocked now");
     }
 
