@@ -39,11 +39,11 @@ public class BaseFunctionDemo {
         }
 
         //Get account list
-        try{
-            getAccountList(admin);
-        }catch (IOException e){
-
-        }
+//        try{
+//            getAccountList(admin);
+//        }catch (IOException e){
+//
+//        }
 
         //Create an account
         try{

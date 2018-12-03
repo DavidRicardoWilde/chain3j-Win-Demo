@@ -218,6 +218,9 @@ public abstract class Contract extends ManagedTransaction {
                 .send();
 
         String value = mcCall.getValue();
+//        if(value == null){
+//        }
+        //String value = "0xef5fb05b";
         return FunctionReturnDecoder.decode(value, function.getOutputParameters());
     }
 
@@ -229,6 +232,7 @@ public abstract class Contract extends ManagedTransaction {
             return (T) values.get(0);
         } else {
             return null;
+            //return (T)"0xef5fb05b";
         }
     }
 

@@ -64,7 +64,7 @@ public class BaseDemoApplication {
 
         // Build the Raw TX
         BigInteger sendValue = BigInteger.valueOf(1000000000000L);
-        String des = "0x7312F4B8A4457a36827f185325Fd6B66a3f8BB8B";
+        String des = "0xE9937C5FA6e7823e7D3611511b4A731814df71fB";
         RawTransaction rawTx  = createTX(srcNonce, des, sendValue);
 
         // Sign the TX with Credential
