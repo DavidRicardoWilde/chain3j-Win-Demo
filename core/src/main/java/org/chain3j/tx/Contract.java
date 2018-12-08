@@ -265,6 +265,7 @@ public abstract class Contract extends ManagedTransaction {
             Function function)
             throws IOException, TransactionException {
         return executeTransaction(function, BigInteger.ZERO);
+       // return executeTransaction(function, BigInteger.valueOf(101)); edit by Shidian Wang
     }
 
     private TransactionReceipt executeTransaction(

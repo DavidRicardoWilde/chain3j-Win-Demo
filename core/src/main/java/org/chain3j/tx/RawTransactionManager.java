@@ -45,6 +45,7 @@ public class RawTransactionManager extends TransactionManager {
         this.credentials = credentials;
 
         this.chainId = chainId;
+        //this.chainId =0; //***Do not allow such modification***  ***just for testing on 12/7***
     }
 
     public RawTransactionManager(
@@ -113,7 +114,6 @@ public class RawTransactionManager extends TransactionManager {
             throws IOException {
 
         byte[] signedMessage;
-
         if (chainId > ChainId.NONE) {
             signedMessage = TransactionEncoder.signMessage(rawTransaction, chainId, credentials);
         } else {
