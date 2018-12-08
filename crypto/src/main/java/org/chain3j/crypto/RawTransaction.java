@@ -36,10 +36,8 @@ public class RawTransaction {
     private BigInteger value;
     private String data;
     // private Integer chainId;
-    //private String systemFlag;//Always 0
-    private Integer systemFlag;//Edit by Shidian Wang
-   // private String shardingFlag;// 0 - MotherChain TX, 1 - Microchain TX
-   private Integer shardingFlag;//Edit by Shidian Wang
+    private String systemFlag;//Always 0
+    private String shardingFlag;// 0 - MotherChain TX, 1 - Microchain TX
     private String via;// Vnode address to send the TX to MicroChains
 
     protected RawTransaction(BigInteger nonce, 
@@ -55,10 +53,8 @@ public class RawTransaction {
         this.gasLimit = gasLimit;
         this.to = to;
         this.value = value;
-        //this.shardingFlag = shardingFlag;
-        //this.shardingFlag = shardingFlag;
-        //this.via = via;
-        this.via="0xD814F2ac2c4cA49b33066582E4e97EBae02F2aB9";
+        this.shardingFlag = shardingFlag;
+        this.via = via;
 
         if (data != null) {
             this.data = Numeric.cleanHexPrefix(data);
@@ -66,10 +62,7 @@ public class RawTransaction {
         }
 
         // SystemFlag should always be 0
-       // this.systemFlag = "";
-        //this.systemFlag="0";
-        this.shardingFlag = 0; //Edit by Shidian Wang
-        this.systemFlag = 0; //Edit by Shidian Wang
+        this.systemFlag = "";
     }
 
     //Transfer MC only, no data 
@@ -77,8 +70,8 @@ public class RawTransaction {
     public static RawTransaction createMcTransaction(
             BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String to,
             BigInteger value) {
-        String shardingFlag = "0";
-        String via = "0xD814F2ac2c4cA49b33066582E4e97EBae02F2aB9"; //note:
+        String shardingFlag = "";
+        String via = "";
         return new RawTransaction(nonce, gasPrice, gasLimit, to, value, "", shardingFlag, via);
 
     }
@@ -89,8 +82,8 @@ public class RawTransaction {
             BigInteger gasPrice, BigInteger gasLimit,
             String to, BigInteger value,
             String data) {
-        String shardingFlag = "0";
-        String via = "0xD814F2ac2c4cA49b33066582E4e97EBae02F2aB9";
+        String shardingFlag = "";
+        String via = "";
         return new RawTransaction(nonce, gasPrice, gasLimit, to, value, data, shardingFlag, via);
     }
 
@@ -112,8 +105,8 @@ public class RawTransaction {
             BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, 
             BigInteger value,
             String init) {
-        String shardingFlag = "0";
-        String via = "0xD814F2ac2c4cA49b33066582E4e97EBae02F2aB9";
+        String shardingFlag = "";
+        String via = "";
         return new RawTransaction(nonce, gasPrice, gasLimit, "", value, init, shardingFlag, via);
     }
 
@@ -150,19 +143,13 @@ public class RawTransaction {
         return value;
     }
 
-//    public String getShardingFlag() {
-//        return  shardingFlag;
-//    }
-    public Integer getShardingFlag() {
-    return shardingFlag;
-} //test -- //Edit by Shidian Wang
+    public String getShardingFlag() {
+        return  shardingFlag;
+    }
 
-//    public String getSystemFlag() {
-//        return  systemFlag;
-//    }
-    public Integer getSystemFlag() {
-    return systemFlag;
-} //test -- //Edit by Shidian Wang
+    public String getSystemFlag() {
+        return  systemFlag;
+    }
 
     public String getVia() {
         return via;

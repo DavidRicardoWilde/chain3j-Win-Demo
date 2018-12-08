@@ -29,10 +29,8 @@ public class Transaction {
     private String data;
     private BigInteger nonce;  // nonce field is not present on mc_call/mc_estimateGas
     // private Integer chainId;
-    //private String shardingFlag;// 0 - MotherChain TX, 1 - MicroChain TX
-    private Integer shardingFlag;//Edit by Shidian Wang
-    //private String systemFlag;  // 0 - non-system TX, default;
-    private Integer systemFlag;//Edit by Shidian Wang
+    private String shardingFlag;// 0 - MotherChain TX, 1 - MicroChain TX
+    private String systemFlag;  // 0 - non-system TX, default; 
     //1 - system TX, internal use only, should not set
     private String via;         // 
 
@@ -45,11 +43,9 @@ public class Transaction {
         this.value = value;
 
         //Set default values for new flags
-//        this.shardingFlag = "0";
-//        this.systemFlag = "0";
-        this.shardingFlag = 0; //Edit by Shidian Wang
-        this.systemFlag = 0; //Edit by Shidian Wang
-        this.via = "0xD814F2ac2c4cA49b33066582E4e97EBae02F2aB9";
+        this.shardingFlag = "0";
+        this.systemFlag = "0";
+        this.via = "0";
 
         if (data != null) {
             this.data = Numeric.prependHexPrefix(data);
@@ -128,23 +124,17 @@ public class Transaction {
         return convert(nonce);
     }
 
-//    public String getSystemFlag() {
-//        return systemFlag;
-//    }
-    public Integer getSystemFlag() {
+    public String getSystemFlag() {
         return systemFlag;
-    } //test -- //Edit by Shidian Wang
+    }
 
     public String getVia() {
         return via;
     }
 
-//    public String getShardingFlag() {
-//        return shardingFlag;
-//    }
-    public Integer getShardingFlag() {
+    public String getShardingFlag() {
         return shardingFlag;
-    } //test -- //Edit by Shidian Wang
+    }
 
     private static String convert(BigInteger value) {
         if (value != null) {
