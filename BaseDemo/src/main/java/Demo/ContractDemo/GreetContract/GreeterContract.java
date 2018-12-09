@@ -6,27 +6,18 @@ import org.chain3j.abi.datatypes.Function;
 import org.chain3j.abi.datatypes.Type;
 import org.chain3j.abi.datatypes.Utf8String;
 import org.chain3j.crypto.Credentials;
-import org.chain3j.crypto.WalletUtils;
 import org.chain3j.protocol.Chain3j;
-import org.chain3j.protocol.core.DefaultBlockParameter;
 import org.chain3j.protocol.core.RemoteCall;
-import org.chain3j.protocol.core.Request;
-import org.chain3j.protocol.core.methods.request.Transaction;
 import org.chain3j.protocol.core.methods.response.*;
-import org.chain3j.protocol.websocket.events.LogNotification;
-import org.chain3j.protocol.websocket.events.NewHeadsNotification;
+import org.chain3j.protocol.exceptions.TransactionException;
 import org.chain3j.tx.Contract;
 import org.chain3j.tx.exceptions.ContractCallException;
 import org.chain3j.tx.gas.ContractGasProvider;
-import org.chain3j.tx.gas.DefaultGasProvider;
-import rx.Observable;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Future;
-
-import org.chain3j.protocol.http.HttpService;
+import java.util.Collections;
 
 public class GreeterContract extends Contract {
     public GreeterContract(
@@ -35,12 +26,20 @@ public class GreeterContract extends Contract {
             ContractGasProvider provider
     ){
         super(contractBinary,contractAddress,chain3j, credentials,provider);
-        System.out.println("hi,");
+//        System.out.println("hi,");
     }
+
+//    private GreeterContract(String contractAddress, Chain3j chain3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+//        super(contractAddress, chain3j, credentials, gasPrice, gasLimit);
+//    }
+
+
+
     public void init(){
         //super.init();
         System.out.println("this is greetContractClass");
     }
+
     //public Future<Greeter> deployMe(
     public static  GreeterContract deployMe(
             Chain3j chain3j, Credentials credentials,
@@ -70,7 +69,7 @@ public class GreeterContract extends Contract {
 
    // public Future<Utf8String> greet() {
         public RemoteCall<Utf8String> greet(){
-        //Function function = new Function("greet",
+        //Function function = new Function("greet",bi
         //Function function = new Function("getGreeting",
         Function function = new Function("greet",
                 Arrays.<Type>asList(), Arrays.<TypeReference<?>>asList(
@@ -88,11 +87,35 @@ public class GreeterContract extends Contract {
             return null;
         }
     }
+
+    //sign
     public RemoteCall<TransactionReceipt> newGreeting(Utf8String _greeting){
         Function function = new Function( "newGreeting",
                 Arrays.<Type>asList(_greeting),
-                Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>(){}
-                ));
+                //Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>(){})
+                Collections.<TypeReference<?>>emptyList()
+                );
         return executeRemoteCallTransaction(function);
+        //return exe(function);
     }
+
+//    public Future<TransactionReceipt> newGreeting(Utf8String _greeting) throws Exception{
+//        Function function = new Function("newGreeting", Arrays.<Type>asList(_greeting), Collections.<TypeReference<?>>emptyList());
+//        return (Future<TransactionReceipt>) executeTransaction(function);
+//    }
+
+
+
+//    public TransactionReceipt newGreeting(String _greeting) throws IOException, TransactionException {
+//        Function function = new Function( "newGreeting",
+//                Arrays.<Type>asList(new Utf8String(_greeting)),
+//                //Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>(){})
+//                Collections.<TypeReference<?>>emptyList()
+//        );
+//        //return executeTransaction(function);
+//        return executeCallSingleValueReturn(function);
+//    }
+
+
+
 }
