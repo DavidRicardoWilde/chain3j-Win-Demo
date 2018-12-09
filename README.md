@@ -46,3 +46,7 @@ Download [the latest version](https://github.com/MOACChain/chain3j)
 **[Chain3j Document](http://www.baidu.com)**
 
 ## Demo
+- BaseDemo
+- BaseFunctionDemo: Base api function example
+- Contract Demo: Demo of calling smart contract
+- **Other demos will be uploaded soon.**
