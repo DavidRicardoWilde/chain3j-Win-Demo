@@ -26,7 +26,6 @@ public class GreeterContract extends Contract {
             ContractGasProvider provider
     ){
         super(contractBinary,contractAddress,chain3j, credentials,provider);
-//        System.out.println("hi,");
     }
 
 //    private GreeterContract(String contractAddress, Chain3j chain3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
@@ -98,6 +97,8 @@ public class GreeterContract extends Contract {
         return executeRemoteCallTransaction(function);
         //return exe(function);
     }
+
+    //without sign
 
 //    public Future<TransactionReceipt> newGreeting(Utf8String _greeting) throws Exception{
 //        Function function = new Function("newGreeting", Arrays.<Type>asList(_greeting), Collections.<TypeReference<?>>emptyList());
