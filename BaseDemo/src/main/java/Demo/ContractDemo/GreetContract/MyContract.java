@@ -162,7 +162,7 @@ public class MyContract {
         }
 
         //greeterContract.newGreeting("hi,change it").sendAsync();
-        greeterContract.newGreeting(new Utf8String("hi,change it 2018")).send();
+        greeterContract.newGreeting(new Utf8String("hi,change it 2019")).send();
         //greeterContract.newGreeting("hi,change it");
         //TransactionReceipt tReceipt = greeterContract.newGreeting("123321").get()
         System.out.println("have using newGreetng");
